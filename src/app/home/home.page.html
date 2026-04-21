@@ -31,8 +31,8 @@
   <h2 style="margin-left:10px;">{{ title }}</h2>
 
   <!-- MOVIES -->
-  <ion-card *ngFor="let movie of movies">
-    <img *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+  <ion-card *ngFor="let movie of movies" (click)="openDetails(movie.id)">
+    <img *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"  >
     <p *ngIf="!movie.poster_path">No image</p>
     <ion-card-content>
       <h3>{{ movie.title }}</h3>  

@@ -1,13 +1,61 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>movie-details</ion-title>
+
+    <!-- Home Button -->
+    <ion-buttons slot="start">
+      <ion-button (click)="goHome()">🏠</ion-button>
+    </ion-buttons>
+
+    <ion-title>{{ movieDetails?.title }}</ion-title>
+
+    <!-- Favourites Button -->
+    <ion-buttons slot="end">
+      <ion-button (click)="goFavourites()">❤️</ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">movie-details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content *ngIf="movieDetails">
+
+  <!-- 🎬 Movie Banner -->
+  <img 
+    [src]="'https://image.tmdb.org/t/p/w500' + movieDetails.backdrop_path"
+    style="width:100%; height:200px; object-fit:cover;" />
+
+  <!-- 📄 Movie Info -->
+  <div style="padding:15px;">
+    <h2>{{ movieDetails.title }}</h2>
+    <p><strong>Release:</strong> {{ movieDetails.release_date }}</p>
+    <p><strong>Rating:</strong> ⭐ {{ movieDetails.vote_average }}</p>
+    <p>{{ movieDetails.overview }}</p>
+  </div>
+
+  <!-- ❤️ Button -->
+  <ion-button expand="block" (click)="addToFavourites()">
+    Add To Favourites
+  </ion-button>
+
+  <!-- 🎭 Cast Section -->
+  <h2 style="padding-left:10px;">Cast</h2>
+
+  <ion-list>
+    <ion-item *ngFor="let actor of cast">
+
+      <!-- Actor Image -->
+      <ion-avatar slot="start">
+        <img 
+          *ngIf="actor.profile_path"
+          [src]="'https://image.tmdb.org/t/p/w200' + actor.profile_path" />
+      </ion-avatar>
+
+      <!-- Actor Info -->
+      <ion-label>
+        <h3>{{ actor.name }}</h3>
+        <p>{{ actor.character }}</p>
+      </ion-label>
+
+    </ion-item>
+  </ion-list>
+
 </ion-content>

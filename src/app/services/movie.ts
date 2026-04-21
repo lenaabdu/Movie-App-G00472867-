@@ -23,4 +23,15 @@ export class movie {
       `${this.baseUrl}/search/movie?query=${encodeURIComponent(query)}&api_key=${this.apiKey}`
     );
   }
+  getMovieDetails(id: number) {
+    return this.http.get(
+      `${this.baseUrl}/movie/${id}?api_key=${this.apiKey}`
+    );
+  }
+
+  getMovieCredits(id: number) {
+    return this.http.get(
+      `${this.baseUrl}/movie/${id}/credits?api_key=${this.apiKey}`
+    );
+  }
 }

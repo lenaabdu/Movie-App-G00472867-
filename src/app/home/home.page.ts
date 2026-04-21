@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { movie } from '../services/movie';
+import { Router } from '@angular/router';
 import { IonInput,IonCard, IonCardContent ,IonHeader, IonContent,  IonToolbar, IonTitle, IonButtons, IonIcon, IonButton,  IonItem } from "@ionic/angular/standalone";
 
 
@@ -14,12 +15,11 @@ import { FormsModule } from '@angular/forms';
   imports:[IonInput,IonButton,IonButtons, IonIcon,IonCard, IonCardContent ,IonHeader, IonContent,FormsModule,  IonToolbar, IonTitle ,CommonModule, IonItem],
 })
 export class HomePage implements OnInit {
-
   movies: any[] = [];
   searchText: string = '';
   isLoading = false;
   title: string = "Today's Trending Movies";
-  constructor(private movie: movie) {}
+  constructor(private movie: movie,private router: Router) {}
 
   ngOnInit() {
     this.loadTrending();
@@ -43,5 +43,8 @@ export class HomePage implements OnInit {
         this.movies = data.results;
       });
     }
+  }
+  openDetails(id: number) {
+    this.router.navigate(['/movie-details', id]);
   }
 }
