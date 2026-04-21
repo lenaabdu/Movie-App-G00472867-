@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class Movie {
+export class movie {
 
   private apiKey = 'c2f3f72747a518faa102853f36dd4635';
   private baseUrl = 'https://api.themoviedb.org/3';

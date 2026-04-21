@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from '../services/movie';
-import { IonHeader, IonContent,  IonToolbar, IonTitle } from "@ionic/angular/standalone";
+import { movie } from '../services/movie';
+import { IonInput,IonCard, IonCardContent ,IonHeader, IonContent,  IonToolbar, IonTitle, IonButtons, IonIcon, IonButton,  IonItem } from "@ionic/angular/standalone";
 
 
 import { CommonModule } from '@angular/common';
@@ -9,34 +9,39 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
+
   standalone: true  ,
-  imports:[IonHeader, IonContent,FormsModule,  IonToolbar, IonTitle ,CommonModule,],
+  imports:[IonInput,IonButton,IonButtons, IonIcon,IonCard, IonCardContent ,IonHeader, IonContent,FormsModule,  IonToolbar, IonTitle ,CommonModule, IonItem],
 })
 export class HomePage implements OnInit {
 
   movies: any[] = [];
-  searchTerm: string = '';
-
-  constructor(private movie: Movie) {}
+  searchText: string = '';
+  isLoading = false;
+  title: string = "Today's Trending Movies";
+  constructor(private movie: movie) {}
 
   ngOnInit() {
     this.loadTrending();
   }
 
   loadTrending() {
+    this.isLoading = true;
     this.movie.getTrendingMovies().subscribe(res => {
       this.movies = res.results;
+      this.isLoading = false;
     });
   }
-
-  searchMovies() {
-    if (!this.searchTerm) {
+  search() {
+    if (this.searchText.trim() === '') {
+      this.title = "Today's Trending Movies";   
       this.loadTrending();
-      return;
+    } else {
+      this.title = `${this.searchText}`; 
+  
+      this.movie.searchMovies(this.searchText).subscribe((data: any) => {
+        this.movies = data.results;
+      });
     }
-
-    this.movie.searchMovies(this.searchTerm).subscribe(res => {
-      this.movies = res.results;
-    });
   }
 }
