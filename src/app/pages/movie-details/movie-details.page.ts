@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { movie } from 'src/app/services/movie';
-
+import { home, heart } from 'ionicons/icons';
 import {
   IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
   IonButton,
-  IonButtons, IonList, IonLabel, IonAvatar, IonItem } from '@ionic/angular/standalone';
+  IonButtons, IonList, IonLabel, IonAvatar, IonItem, IonIcon } from '@ionic/angular/standalone';
 
 import { CommonModule } from '@angular/common';
 
@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-movie-details',
   templateUrl: './movie-details.page.html',
   standalone: true,
-  imports: [IonItem, IonAvatar, IonLabel, IonList, 
+  imports: [IonIcon, IonItem, IonAvatar, IonLabel, IonList, 
     CommonModule,
     IonHeader,
     IonToolbar,
@@ -27,7 +27,8 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class MovieDetailsPage implements OnInit {
-
+  home = home;
+  heart = heart;
   movieDetails: any;   //  movie data
   cast: any[] = [];   //  cast
 
@@ -35,33 +36,35 @@ export class MovieDetailsPage implements OnInit {
     private route: ActivatedRoute,
     private movie: movie,   // service
     private router: Router
-  ) {}
+  ) {
+   
+    }
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    // 🎬 Get movie details
+    // Get movie details
     this.movie.getMovieDetails(id).subscribe(res => {
       this.movieDetails = res;
     });
 
-    // 🎭 Get cast
+    //  Get cast
     this.movie.getMovieCredits(id).subscribe((res: any) => {
       this.cast = res.cast.slice(0, 5);
     });
   }
 
-  // 🏠 Navigate Home
+  //  Navigate Home
   goHome() {
     this.router.navigate(['/home']);
   }
 
-  // ❤️ Navigate Favourites
+  //  Navigate Favourites
   goFavourites() {
     this.router.navigate(['/favourites']);
   }
 
-  // ⭐ Add to favourites
+  //  Add to favourites
   addToFavourites() {
     let favs = JSON.parse(localStorage.getItem('favourites') || '[]');
 

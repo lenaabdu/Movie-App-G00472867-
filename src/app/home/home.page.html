@@ -1,11 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>G00472867</ion-title>
-    <!-- Favourites icon (extra marks later) -->
+    <!-- Favourites button -->
     <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="heart"></ion-icon>
-      </ion-button>
+      
+        <ion-button (click)="goFavourites()"> <ion-icon slot="icon-only" [icon]="heart"></ion-icon></ion-button>
+      
     </ion-buttons>
 
   </ion-toolbar>

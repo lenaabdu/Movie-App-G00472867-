@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { movie } from '../services/movie';
 import { Router } from '@angular/router';
 import { IonInput,IonCard, IonCardContent ,IonHeader, IonContent,  IonToolbar, IonTitle, IonButtons, IonIcon, IonButton,  IonItem } from "@ionic/angular/standalone";
-
+import {  heart } from 'ionicons/icons';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
   imports:[IonInput,IonButton,IonButtons, IonIcon,IonCard, IonCardContent ,IonHeader, IonContent,FormsModule,  IonToolbar, IonTitle ,CommonModule, IonItem],
 })
 export class HomePage implements OnInit {
+  heart = heart;
   movies: any[] = [];
   searchText: string = '';
   isLoading = false;
@@ -47,4 +48,8 @@ export class HomePage implements OnInit {
   openDetails(id: number) {
     this.router.navigate(['/movie-details', id]);
   }
+    //  Navigate Favourites
+    goFavourites() {
+      this.router.navigate(['/favourites']);
+    }
 }
