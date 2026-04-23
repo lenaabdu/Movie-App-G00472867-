@@ -17,6 +17,10 @@ const routes: Routes = [
     loadComponent: () =>
       import('./pages/movie-details/movie-details.page')
         .then(m => m.MovieDetailsPage)
+  },
+  {
+    path: 'favourites',
+    loadChildren: () => import('./pages/favourites/favourites.page').then( m => m.FavouritesPage)
   }
 ];
 
