@@ -26,7 +26,7 @@ import { CommonModule } from '@angular/common';
  IonButtons,IonHeader
   ]
 })
-export class MovieDetailsPage implements OnInit {
+export class MovieDetailsPage  {
   home = home;
   heart = heart;
   movieDetails: any;   //  movie data
@@ -101,5 +101,7 @@ export class MovieDetailsPage implements OnInit {
   
     
   }
-  
+  openPerson(id: number) {
+    this.router.navigate(['/details', id]);
+  }
 }

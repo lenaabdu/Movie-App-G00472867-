@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   imports :[ IonIcon, IonButtons,IonHeader, IonToolbar, IonTitle,IonContent, IonCard, IonCardContent, IonButton,CommonModule ],
   
 })
-export class FavouritesPage implements OnInit {
+export class FavouritesPage {
   home = home;
   heart=heart;
   favourites: any[] = [];

@@ -47,7 +47,7 @@
   <h2 style="padding-left:10px;">Cast</h2>
 
   <ion-list>
-    <ion-item *ngFor="let actor of cast">
+    <ion-item *ngFor="let actor of cast" (click)="openPerson(actor.id)">
 
       <!-- Actor Image -->
       <ion-avatar slot="start">

@@ -34,4 +34,15 @@ export class movie {
       `${this.baseUrl}/movie/${id}/credits?api_key=${this.apiKey}`
     );
   }
+  getDetails(id: number) {
+    return this.http.get(
+      `${this.baseUrl}/person/${id}?api_key=${this.apiKey}`
+    );
+  }
+  
+  getDetailsMovies(id: number) {
+    return this.http.get(
+      `${this.baseUrl}/person/${id}/movie_credits?api_key=${this.apiKey}`
+    );
+  }
 }

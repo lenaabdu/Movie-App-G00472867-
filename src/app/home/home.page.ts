@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true  ,
   imports:[IonInput,IonButton,IonButtons, IonIcon,IonCard, IonCardContent ,IonHeader, IonContent,FormsModule,  IonToolbar, IonTitle ,CommonModule, IonItem],
 })
-export class HomePage implements OnInit {
+export class HomePage {
   heart = heart;
   movies: any[] = [];
   searchText: string = '';
