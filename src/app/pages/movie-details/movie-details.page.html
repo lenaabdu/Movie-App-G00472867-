@@ -32,12 +32,18 @@
     <p>{{ movieDetails.overview }}</p>
   </div>
 
-  <!-- ❤️ Button -->
-  <ion-button size="small" fill="outline" (click)="addToFavourites()">
-    <ion-icon name="heart"></ion-icon> Add To Favourites
-  </ion-button>
+  <!--  Button -->
 
-  <!-- 🎭 Cast Section -->
+  <ion-button size="small" (click)="isFavourite ? removeFromFavourites() : addToFavourites()">
+  <!-- Icon -->
+  <ion-icon 
+    slot="start" 
+    [name]="isFavourite ? 'trash' : 'heart'">
+  </ion-icon>
+    {{ isFavourite ? 'Remove From Favourites' :' Add To Favourites' }}
+  
+  </ion-button>
+  <!-- Cast Section -->
   <h2 style="padding-left:10px;">Cast</h2>
 
   <ion-list>

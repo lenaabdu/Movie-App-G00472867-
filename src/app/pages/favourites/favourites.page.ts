@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent,  IonCard, IonCardContent, IonButton } from "@ionic/angular/standalone";
-import { heart, home, trash } from 'ionicons/icons';
+import { IonIcon, IonButtons,IonHeader, IonToolbar, IonTitle, IonContent,  IonCard, IonCardContent, IonButton } from "@ionic/angular/standalone";
+import { heart, home } from 'ionicons/icons';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -9,11 +9,12 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-favourites',
   templateUrl: './favourites.page.html',
-  imports :[ IonHeader, IonToolbar, IonTitle,IonContent, IonCard, IonCardContent, IonButton,CommonModule ],
+  imports :[ IonIcon, IonButtons,IonHeader, IonToolbar, IonTitle,IonContent, IonCard, IonCardContent, IonButton,CommonModule ],
   
 })
 export class FavouritesPage implements OnInit {
-
+  home = home;
+  heart=heart;
   favourites: any[] = [];
 
   constructor(private router: Router) {}

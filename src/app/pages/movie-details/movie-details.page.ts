@@ -31,12 +31,16 @@ export class MovieDetailsPage implements OnInit {
   heart = heart;
   movieDetails: any;   //  movie data
   cast: any[] = [];   //  cast
+  isFavourite = false;
 
   constructor(
     private route: ActivatedRoute,
     private movie: movie,   // service
     private router: Router
   ) {
+   
+    
+     
    
     }
 
@@ -51,6 +55,10 @@ export class MovieDetailsPage implements OnInit {
     //  Get cast
     this.movie.getMovieCredits(id).subscribe((res: any) => {
       this.cast = res.cast.slice(0, 5);
+    });
+    this.movie.getMovieDetails(id).subscribe(res => {
+      this.movieDetails = res;
+      this.checkIfFavourite(); // 👈 important
     });
   }
 
@@ -67,14 +75,31 @@ export class MovieDetailsPage implements OnInit {
   //  Add to favourites
   addToFavourites() {
     let favs = JSON.parse(localStorage.getItem('favourites') || '[]');
-
-    if (!favs.find((m: any) => m.id === this.movieDetails.id)) {
+  
+    if (!this.isFavourite) {
       favs.push(this.movieDetails);
       localStorage.setItem('favourites', JSON.stringify(favs));
-      alert('Added to favourites!');
-    } else {
-      alert('Already in favourites!');
+      this.isFavourite = true;
+  
+    
     }
+  }
+  //   Check If Movie Is Already Favourite
+  checkIfFavourite() {
+    let favs = JSON.parse(localStorage.getItem('favourites') || '[]');
+    this.isFavourite = favs.some((m: any) => m.id === this.movieDetails.id);
+  }
+  //Add Remove Function
+  removeFromFavourites() {
+    let favs = JSON.parse(localStorage.getItem('favourites') || '[]');
+  
+    favs = favs.filter((m: any) => m.id !== this.movieDetails.id);
+  
+    localStorage.setItem('favourites', JSON.stringify(favs));
+  
+    this.isFavourite = false;
+  
+    
   }
   
 }
