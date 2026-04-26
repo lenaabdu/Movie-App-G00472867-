@@ -23,6 +23,11 @@ const routes: Routes = [
     loadComponent: () =>
       import('./pages/favourites/favourites.page')
         .then(m => m.FavouritesPage)
+  },
+  {
+    path: 'details',
+    loadComponent: () => import('./pages/details/details.page')
+      .then(m => m.DetailsPage)
   }
 ];
 
