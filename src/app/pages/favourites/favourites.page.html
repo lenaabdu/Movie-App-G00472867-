@@ -7,7 +7,34 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">favourites</ion-title>
+      <ion-title size="large">favourites Movies</ion-title>
     </ion-toolbar>
   </ion-header>
+   <!-- Empty message -->
+   <div *ngIf="favourites.length === 0" style="text-align:center; margin-top:50px;">
+    <p>No favourite movies yet ❤️</p>
+  </div>
+
+  <!-- Movie Cards -->
+  <ion-card *ngFor="let movie of favourites" class="movie-card">
+
+    <!-- Poster -->
+    <img 
+      [src]="'https://image.tmdb.org/t/p/w300' + movie.poster_path" />
+
+    <!-- Info -->
+    <ion-card-content>
+      <h3>{{ movie.title }}</h3>
+
+      <!-- DETAILS button -->
+      <ion-button size="small" (click)="openDetails(movie.id)">
+        DETAILS
+      </ion-button>
+      <ion-button size="small" color="danger" (click)="removeFavourite(movie.id)">
+        Remove
+      </ion-button>
+    </ion-card-content>
+
+  </ion-card>
+
 </ion-content>
