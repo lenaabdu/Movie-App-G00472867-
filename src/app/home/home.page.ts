@@ -15,8 +15,8 @@ import { FormsModule } from '@angular/forms';
   imports:[IonInput,IonButton,IonButtons, IonIcon,IonCard, IonCardContent ,IonHeader, IonContent,FormsModule,  IonToolbar, IonTitle ,CommonModule, IonItem],
 })
 export class HomePage {
-  heart = heart;
-  movies: any[] = [];
+  heart = heart; // Favourite icon
+  movies: any[] = []; // Stores movie list (trending/search results)
   searchText: string = '';
   isLoading = false;
   title: string = "Today's Trending Movies";
@@ -25,7 +25,7 @@ export class HomePage {
   ngOnInit() {
     this.loadTrending();
   }
-
+ //  Load trending movies from API
   loadTrending() {
     this.isLoading = true;
     this.movie.getTrendingMovies().subscribe(res => {
@@ -33,6 +33,7 @@ export class HomePage {
       this.isLoading = false;
     });
   }
+    // Search movies 
   search() {
     if (this.searchText.trim() === '') {
       this.title = "Today's Trending Movies";   
@@ -45,10 +46,11 @@ export class HomePage {
       });
     }
   }
+   // Open Movie Details Page
   openDetails(id: number) {
     this.router.navigate(['/movie-details', id]);
   }
-    //  Navigate Favourites
+    //  Navigate Favourites page
     goFavourites() {
       this.router.navigate(['/favourites']);
     }
