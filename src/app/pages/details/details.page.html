@@ -12,39 +12,49 @@
             <ion-icon name="arrow-back"></ion-icon>
           </ion-button>
         </ion-buttons>
-
     <ion-title>{{ person?.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content *ngIf="person">
-
-  <!-- 👤 Top Section -->
+  <!--Top Section -->
   <ion-item lines="none">
 
-    <!-- Image -->
+    <!--Image -->
     <ion-avatar slot="start" style="width:120px; height:120px;">
-      <img 
-        *ngIf="person.profile_path"
-        [src]="'https://image.tmdb.org/t/p/w200' + person.profile_path" />
+
+      <img *ngIf="person.profile_path; else noPersonImage"
+           [src]="'https://image.tmdb.org/t/p/w200' + person.profile_path" />
+    
+      <ng-template #noPersonImage>
+        <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+          <p>No image</p>
+        </div>
+      </ng-template>
+    
     </ion-avatar>
     <!-- Info -->
     <ion-label>
       <h2>{{ person.name }}</h2>
-      <p><strong>DOB:</strong> {{ person.birthday || 'N/A' }}</p>
-      <p><strong>DOD:</strong> {{ person.deathday || 'N/A' }}</p>
-      <p>
-        <strong>AKA:</strong> 
-        {{ person.also_known_as?.length ? person.also_known_as.join(', ') : 'N/A' }}
+       <!-- Date of birth -->
+      <p *ngIf="person.birthday">
+        <strong>DOB:</strong> {{ person.birthday }}
       </p>
-      <p><strong>Place:</strong> {{ person.place_of_birth || 'N/A' }}</p>
+       <!-- Date of death -->
+      <p *ngIf="person.deathday">
+        <strong>DOD:</strong> {{ person.deathday }}
+      </p>
+       <!-- Also Known As -->
+      <p *ngIf="person.also_known_as?.length">
+        <strong>AKA:</strong> {{ person.also_known_as.join(', ') }}
+      </p>
+       <!-- Place of birth -->
+      <p *ngIf="person.place_of_birth">
+        <strong>Place:</strong> {{ person.place_of_birth }}
+      </p>
     </ion-label>
-
   </ion-item>
-
   <hr>
-
-  <!-- 📖 Biography -->
+  <!-- Biography -->
   <div style="padding:10px;">
     <p>
       {{ person.biography || 'No biography available.' }}
@@ -55,7 +65,7 @@
 
   <hr>
 
-  <!-- 🎬 Other Movies -->
+  <!-- Other Movies -->
   <div style="padding:10px;">
     <h3>Other Movies</h3>
   </div>
@@ -65,7 +75,6 @@
     <img 
       *ngIf="m.poster_path"
       [src]="'https://image.tmdb.org/t/p/w300' + m.poster_path" />
-
     <ion-card-content>
       <h3>{{ m.title }}</h3>
     </ion-card-content>
