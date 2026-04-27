@@ -51,7 +51,7 @@ Users can:
 
 
 
-## 🔌 API Used:-
+##  API Used:-
 This app uses the TMDb API:
 
 - Trending Movies:
