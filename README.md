@@ -1,6 +1,8 @@
 # Movie-App-G00472867-
 Mobile Applications Development
-# 🎬 Movie App (Ionic + Angular)
+
+
+#  Movie App (Ionic + Angular)
 
 ##  Project Overview
 This is a mobile application built using Ionic and Angular that allows users to browse movies using The Movie Database (TMDb) API.  
