@@ -13,12 +13,14 @@ import { CommonModule } from '@angular/common';
   
 })
 export class FavouritesPage {
+   // Icons for UI
   home = home;
   heart=heart;
+  // Array to store favourite movies
   favourites: any[] = [];
 
   constructor(private router: Router) {}
-
+ // Runs when page is first loaded
   ngOnInit() {
     this.loadFavourites();
   }
